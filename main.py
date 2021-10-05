@@ -8,7 +8,7 @@ TOKEN = "SHIB"
 BOT_TOKEN = "2007451746:AAF7BxiM-YGSvMoodo4_wY8tGUMMtf2CD6E"
 PAYMENT_CHANNEL = "@UniversePayments_History" #add payment channel here including the '@' sign
 OWNER_ID = 1031998258 #write owner's user id here.. get it from @MissRose_Bot by /id
-CHANNELS = ["@CHECKCHANNEL"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
+CHANNELS = ["@UniversePayments_History", "@AirdropAnns"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
               #you can add as many channels here and also add the '@' sign before channel username
 Daily_bonus = 1000 #Put daily bonus amount here!
 Mini_Withdraw = 15000  #remove 0 and add the minimum withdraw u want to set
