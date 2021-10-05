@@ -8,7 +8,7 @@ TOKEN = "SHIB"
 BOT_TOKEN = "2007451746:AAFX3qsx5YVZmWwyLhl0hv-25Tstsg1It-Y"
 PAYMENT_CHANNEL = "@UniversePayments_History" #add payment channel here including the '@' sign
 OWNER_ID = 1031998258 #write owner's user id here.. get it from @MissRose_Bot by /id
-CHANNELS = ["@AirdropAnns"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
+CHANNELS = ["@AirdropAnns", "@UniversePayments_History"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
               #you can add as many channels here and also add the '@' sign before channel username
 Daily_bonus = 1000 #Put daily bonus amount here!
 Mini_Withdraw = 15000  #remove 0 and add the minimum withdraw u want to set
@@ -206,7 +206,7 @@ def send_text(message):
 
         keyboard = telebot.types.ReplyKeyboardMarkup(True)
         keyboard.row('🚫 Cancel')
-        send = bot.send_message(message.chat.id, "_⚠️Send your TRX Wallet Address._",
+        send = bot.send_message(message.chat.id, "_⚠️Send Your Coinbase Email._",
                                 parse_mode="Markdown", reply_markup=keyboard)
         # Next message will call the name_handler function
         bot.register_next_step_handler(message, trx_address)
@@ -270,19 +270,19 @@ def trx_address(message):
    try:
     if message.text == "🚫 Cancel":
         return menu(message.chat.id)
-    if len(message.text) == 34:
+    if len(message.text) > 5:
         user_id = message.chat.id
         user = str(user_id)
         data = json.load(open('users.json', 'r'))
         data['wallet'][user] = message.text
 
-        bot.send_message(message.chat.id, "*💹Your Trx wallet set to " +
+        bot.send_message(message.chat.id, "*💹Your Coinbase Email set to " +
                          data['wallet'][user]+"*", parse_mode="Markdown")
         json.dump(data, open('users.json', 'w'))
         return menu(message.chat.id)
     else:
         bot.send_message(
-            message.chat.id, "*⚠️ It's Not a Valid Trx Address!*", parse_mode="Markdown")
+            message.chat.id, "*⚠️ It's Not a Valid Email Address!*", parse_mode="Markdown")
         return menu(message.chat.id)
    except:
         bot.send_message(message.chat.id, "This command having error pls wait for ficing the glitch by admin")
