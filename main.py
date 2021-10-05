@@ -5,10 +5,10 @@ import telebot
 ##TOKEN DETAILS
 TOKEN = "SHIB"
 
-BOT_TOKEN = "2007451746:AAF7BxiM-YGSvMoodo4_wY8tGUMMtf2CD6E"
+BOT_TOKEN = "2007451746:AAFX3qsx5YVZmWwyLhl0hv-25Tstsg1It-Y"
 PAYMENT_CHANNEL = "@UniversePayments_History" #add payment channel here including the '@' sign
 OWNER_ID = 1031998258 #write owner's user id here.. get it from @MissRose_Bot by /id
-CHANNELS = ["@UniversePayments_History", "@AirdropAnns"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
+CHANNELS = ["@AirdropAnns"] #add channels to be checked here in the format - ["Channel 1", "Channel 2"] 
               #you can add as many channels here and also add the '@' sign before channel username
 Daily_bonus = 1000 #Put daily bonus amount here!
 Mini_Withdraw = 15000  #remove 0 and add the minimum withdraw u want to set
@@ -98,7 +98,7 @@ def start(message):
         markups = telebot.types.InlineKeyboardMarkup()
         markups.add(telebot.types.InlineKeyboardButton(
             text='🤼‍♂️ Joined', callback_data='check'))
-        msg_start = "*🍔 To Use This Bot You Need To Join This Channel - \n➡️ @AirdropAnns\n➡️ @UniversePayments_History*"
+        msg_start = "*🍔 To Use This Bot You Need To Join This Channel - \n➡️ @ Fill your channels at line: 101 and 157*"
         bot.send_message(user, msg_start,
                          parse_mode="Markdown", reply_markup=markups)
    except:
@@ -154,7 +154,7 @@ def query_handler(call):
             markup = telebot.types.InlineKeyboardMarkup()
             markup.add(telebot.types.InlineKeyboardButton(
                 text='🤼‍♂️ Joined', callback_data='check'))
-            msg_start = "*🍔 To Use This Bot You Need To Join This Channel - \n➡️ @AirdropAnns\n➡️ @UniversePayments_History*"
+            msg_start = "*🍔 To Use This Bot You Need To Join This Channel - \n➡️ @ Fill your channels at line: 101 and 157*"
             bot.send_message(call.message.chat.id, msg_start,
                              parse_mode="Markdown", reply_markup=markup)
    except:
@@ -206,7 +206,7 @@ def send_text(message):
 
         keyboard = telebot.types.ReplyKeyboardMarkup(True)
         keyboard.row('🚫 Cancel')
-        send = bot.send_message(message.chat.id, "_⚠️Send your Coinbase Email._",
+        send = bot.send_message(message.chat.id, "_⚠️Send your TRX Wallet Address._",
                                 parse_mode="Markdown", reply_markup=keyboard)
         # Next message will call the name_handler function
         bot.register_next_step_handler(message, trx_address)
@@ -270,19 +270,19 @@ def trx_address(message):
    try:
     if message.text == "🚫 Cancel":
         return menu(message.chat.id)
-    if len(message.text) > 5:
+    if len(message.text) == 34:
         user_id = message.chat.id
         user = str(user_id)
         data = json.load(open('users.json', 'r'))
         data['wallet'][user] = message.text
 
-        bot.send_message(message.chat.id, "*💹Your Coinbase Email set to " +
+        bot.send_message(message.chat.id, "*💹Your Trx wallet set to " +
                          data['wallet'][user]+"*", parse_mode="Markdown")
         json.dump(data, open('users.json', 'w'))
         return menu(message.chat.id)
     else:
         bot.send_message(
-            message.chat.id, "*⚠️ It's Not a Valid Coinbase Email!*", parse_mode="Markdown")
+            message.chat.id, "*⚠️ It's Not a Valid Trx Address!*", parse_mode="Markdown")
         return menu(message.chat.id)
    except:
         bot.send_message(message.chat.id, "This command having error pls wait for ficing the glitch by admin")
@@ -327,7 +327,7 @@ def amo_with(message):
     markupp.add(telebot.types.InlineKeyboardButton(text='🍀 BOT LINK', url=f'https://telegram.me/{bot_name}?start={OWNER_ID}'))
 
     send = bot.send_message(PAYMENT_CHANNEL,  "✅* New Withdraw\n\n⭐ Amount - "+str(amo)+f" {TOKEN}\n🦁 User - @"+message.from_user.username+"\n💠 Wallet* - `"+data['wallet'][user]+"`\n☎️ *User Referrals = "+str(
-        data['referred'][user])+"\n\n🏖 Bot Link - @"+bot_name+"\n⏩ Status: Pending (1/30 Block)*", parse_mode="Markdown", disable_web_page_preview=True, reply_markup=markupp)
+        data['referred'][user])+"\n\n🏖 Bot Link - @"+bot_name+"\n⏩ Please wait our owner will confrim it*", parse_mode="Markdown", disable_web_page_preview=True, reply_markup=markupp)
    except:
         bot.send_message(message.chat.id, "This command having error pls wait for ficing the glitch by admin")
         bot.send_message(OWNER_ID, "Your bot got an error fix it fast!\n Error on command: "+message.text)
